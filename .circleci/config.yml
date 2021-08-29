@@ -1,0 +1,21 @@
+version: 2.1
+
+jobs:
+  smoke_test:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run: 
+          name: smoke testing
+          command: |
+            if curl -s --head "http://cyberranjith.com"
+              then
+                exit 0
+              else
+                exit 1
+              fi
+
+workflows:
+  my_workflow:
+    jobs:
+      - smoke_test
